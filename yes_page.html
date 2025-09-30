@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yes Page</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      overflow: hidden; /* prevent scrollbars */
+    }
+    .floating-gif {
+      position: absolute;
+      width: 240px; /* bigger default */
+      animation: floatUp 6s ease-in-out infinite alternate;
+    }
+    @keyframes floatUp {
+      from { transform: translateY(0); }
+      to { transform: translateY(-80px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎉 You chose YESSSSS! 🎉</h1>
+    <p>ILOVEYOUUUUUUUU LANGGAAA! 😄</p>
+    <p>MWAAAAA MWAAAAAAA</p>
+    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Happy Gif" class="gif" id="mainGif">
+  </div>
+
+  <script>
+    const gifs = [
+      "https://media.tenor.com/VhCWjJwTXNAAAAAi/happy-happy-happy.gif",
+      "https://media.tenor.com/VhCWjJwTXNAAAAAi/happy-happy-happy.gif",
+      "https://media.tenor.com/VhCWjJwTXNAAAAAi/happy-happy-happy.gif",
+      "hhttps://media1.tenor.com/m/ULuEInLa150AAAAC/will-smith-clap.gif",
+      "https://media1.tenor.com/m/CZOqX_TRf-QAAAAC/flower-flowers.gif", 
+      "https://media.tenor.com/HKQ9w2VpTHwAAAAi/ily.gif", 
+      "https://media1.tenor.com/m/6xwjsmMIAIoAAAAd/happy-happy-dog.giff", 
+      "https://media1.tenor.com/m/ULuEInLa150AAAAd/will-smith-clap.gif",
+       "https://media1.tenor.com/m/sK9EAMW9eigAAAAC/men-in-black-mib.gif",
+       "https://media1.tenor.com/m/tE4_klZWpvsAAAAC/kitty-mwah.gif",
+    ];
+
+    function spawnGif() {
+      const gif = document.createElement("img");
+      gif.src = gifs[Math.floor(Math.random() * gifs.length)];
+      gif.className = "floating-gif";
+
+      // Random position
+      gif.style.left = Math.random() * (window.innerWidth - 360) + "px";
+      gif.style.top = Math.random() * (window.innerHeight - 360) + "px";
+
+      // Random size (2x bigger now)
+      const sizes = [200, 240, 300, 360];
+      const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
+      gif.style.width = randomSize + "px";
+
+      document.body.appendChild(gif);
+    }
+
+    // When main gif loads, start popping extras
+    const mainGif = document.getElementById("mainGif");
+    mainGif.addEventListener("load", () => {
+      setInterval(spawnGif, 700); // keep adding new gifs
+    });
+  </script>
+</body>
+</html>
